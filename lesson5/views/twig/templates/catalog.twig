@@ -1,0 +1,24 @@
+{% extends "layouts/main.twig" %}
+
+{% block pageTitle %}Каталог{% endblock %}
+
+{% block content %}
+
+<h2>Каталог</h2>
+{% if products != [] %}
+    {% for product in products %}
+    <section>
+        <img src="/assets/images/products/small/{{ product.img }}">
+        <h3><a href="/products/{{ product.id }}">{{ product.name }}</a></h3>
+        <p>Цена: {{ product.price }}</p>
+        <button>В корзину</button>
+    </section>
+    {% endfor %} 
+    <button data-start="{{ startId }}">Еще</button>
+{% else %}
+<p>Каталог пуст.</p>
+{% endif %}
+
+<script src="/assets/scripts/addProductToPage.js"></script>
+
+{% endblock %}
