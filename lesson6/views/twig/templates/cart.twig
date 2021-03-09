@@ -1,0 +1,64 @@
+{% extends "layouts/main.twig" %}
+
+{% block pageTitle %}Корзина{% endblock %}
+
+{% block content %}
+
+<h2>Корзина</h2>
+
+{% if products == null %}
+
+<p>Корзина пуста.</p>
+
+{% else %}
+
+<div>
+    <table>
+        <tr>
+            <th>Список товаров</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Итого</th>
+            <th>Действие</th>
+        </tr>
+       {% for product in products %} 
+        <tr data-prod-id="{{ product.cartId }}">
+            <td>
+                <img src="/assets/images/products/small/{{ product.img }}" alt="{{ product.name }}" width="100">
+                <a href="/products/{{ product.prodId }}">
+                   {{ product.name }} 
+                </a>
+            </td>
+            <td data-price="{{ product.cartId }}">
+               {{ product.price }} 
+            </td>
+            <td data-quantity="{{ product.cartId }}">
+               {{ product.quantity }} 
+            </td>
+            <td data-total-for-prod="{{ product.cartId }}">
+            </td>
+            <td>
+                <button data-prod-id="{{ product.cartId }}" data-action-delete="true">Удалить</button>
+            </td>
+        </tr>
+       {% endfor %} 
+
+        <tr>
+            <td colspan="3">
+                Итого к оплате:
+            </td>
+            <td data-total-for-cart="true">
+            </td>
+            <td>
+                <button data-prod-id="all" data-action-delete="true">Очистить корзину</button>
+            </td>
+        </tr>
+    </table>
+
+    <a href="/order">Оформить заказ</a>
+</div>
+{% endif %}
+<script src="/assets/scripts/addProductTo.js"></script>
+<script src="/assets/scripts/price.js"></script>
+
+{% endblock%}
