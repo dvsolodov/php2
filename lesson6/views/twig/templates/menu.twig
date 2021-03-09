@@ -1,0 +1,13 @@
+<ul>
+{% for item in menu %}
+    <li>
+        <a class="{{ menuActive == item.link ? 'active' : '' }}" href="/{{ item.link }}">
+            {{ item.name }}
+            {% if item.link == 'cart' %}
+            <span id="count">({{ count }})</span>
+            {% endif %}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+

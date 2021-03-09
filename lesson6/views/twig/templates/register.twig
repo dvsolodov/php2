@@ -1,0 +1,29 @@
+{% extends "layouts/main.twig" %}
+
+{% block pageTitle %}Регистрация{% endblock %}
+
+{% block content %}
+<h2>Регистрация учетной записи</h2>
+
+{% if regMsg != null %}
+<p>{{ regMsg }}</p>
+{% endif %}
+
+<form action="/register" method="POST">
+    <p>
+        <span>Логин</span>
+        <input type="text" name="login" value="{{ login ? login : '' }}">
+        <span>Буквы латинского алфавита и цифры &ndash; {{ constant('MIN_LOGIN') }}-{{ constant('MAX_LOGIN') }} символов.</span>
+    </p>
+    <p>
+        <span>Пароль</span>
+        <input type="password" name="password">
+        <span>Буквы латинского алфавита и цифры &ndash; {{ constant('MIN_PASS') }}-{{ constant('MAX_PASS') }} символов.</span>
+    </p>
+    <p>
+        <span>Запомнить</span>
+        <input type="checkbox" name="remember" value="true">
+    </p>
+    <input type="submit" name="reg" value="Зарегистрироваться">
+</form>
+{% endblock %}
