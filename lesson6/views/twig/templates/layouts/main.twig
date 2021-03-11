@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block pageTitle %}{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            {% include 'menu.twig' %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %} 
+    </main>
+
+    <footer>
+        {% include 'footer.twig' %}
+    </footer>
+
+</body>
+</html>

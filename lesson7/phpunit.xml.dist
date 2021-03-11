@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true" 
+         executionOrder="random"
+         resolveDependencies="true">
+  <testsuites>
+    <testsuite name="Main">
+      <directory>tests/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
+<!--
+    автозагрузчик и всё необходимое для работы наших классов инициализируется в vendor/autoload.php;
+    все тесты лежат в каталоге tests в корне проекта, и в подкаталогах этого каталога;
+    PHPUnit проводит тесты в случайном порядке для исключения возможных скрытых зависимостей между тестами. 
+-->

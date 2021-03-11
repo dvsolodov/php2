@@ -1,0 +1,51 @@
+{% extends "layouts/main.twig" %}
+
+{% block pageTitle %}Каталог{% endblock %}
+
+{% block content %}
+
+<section>
+    <img src="/assets/images/products/big/{{ product.img }}" width="400">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Цена: {{ product.price }}</p>
+    <button data-id="{{ product.id }}" data-quant="1" data-price="{{ product.price }}">В корзину</button>
+</section>
+
+<section>
+    <h3>Оставить отзыв о товаре</h3>
+
+    {% if commentMsg != null %}
+    <p>{{ commentMsg }}</p>
+    {% endif %}
+
+    <form action="/comments/{{ formAction }}" method="POST">
+        <p>
+            <span>Ваше имя: </span>
+            <input type="text" name="name">
+            <span>Количество символов от {{ constant('MIN_NAME') }} до {{ constant('MAX_NAME') }}</span>
+        </p>
+        <p>
+            <span>Ваш отзыв: </span>
+            <textarea name="text" cols="30" rows="10"></textarea>
+            <span>Количество символов от {{ constant('MIN_COMMENT') }} до {{ constant('MAX_COMMENT') }}</span>
+        </p>
+        <input type="hidden" name="productId" value="{{ product.id }} ">
+        <input type="submit" name="comment" value="{{ buttonName }}">
+    </form>
+</section>
+
+<section>
+    <h3>Отзывы</h3>
+{% for comment in comments %}
+    <p>
+        <span>{{ comment.comment_date|date("Y-M-d H:i:s") }}</span>
+        <span>{{ comment.user_name }}</span>
+        <span>{{ comment.text }}</span>
+    </p>
+{% endfor %}
+</section>    
+
+<script src="/assets/scripts/addProductTo.js"></script>
+    
+{% endblock %}
