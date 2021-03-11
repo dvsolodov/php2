@@ -1,0 +1,27 @@
+{% extends "layouts/main.twig" %}
+
+{% block pageTitle %}Оформление заказа{% endblock %}
+
+{% block content %}
+
+<h2>Оформление заказа</h2>
+
+{% if orderMsg != null %}
+
+{{ orderMsg }}
+
+{% endif %}
+
+<form action="/order/add" method="POST">
+    <p>
+        <span>Ваш номер телефона</span>
+        <input type="text" name="phone" value="{{ phone != null ? phone : '' }}">
+    </p>
+    <p>
+        <span>Ваше имя</span>
+        <input type="text" name="name" value="{{ name != null ? name : '' }}">
+    </p>
+    <input type="submit" name="order" value="Оформить">
+</form>
+
+{% endblock %}
