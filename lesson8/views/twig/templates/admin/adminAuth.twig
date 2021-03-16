@@ -1,0 +1,23 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+
+<h2>Вход в панель администратора</h2>
+
+{% if authMsg != null %}
+<p>{{ authMsg }}</p>
+{% endif %}
+
+<form action="/admin/auth" method="POST">
+    <p>
+        <span>Логин</span>
+        <input type="text" name="login" value="{{ login ? login : '' }}">
+    </p>
+    <p>
+        <span>Пароль</span>
+        <input type="password" name="password">
+    </p>
+    <input type="submit" name="auth" value="Войти">
+</form>
+
+{% endblock %}

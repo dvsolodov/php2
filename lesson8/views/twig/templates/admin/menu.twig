@@ -1,0 +1,14 @@
+{% if isAdmin %}
+
+<ul>
+{% for item in menu %}
+    <li>
+        <a href="/{{ item.link }}">
+            {{ item.name }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endif %}
+

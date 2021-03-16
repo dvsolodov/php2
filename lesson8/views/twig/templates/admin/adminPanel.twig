@@ -1,0 +1,58 @@
+{% extends "layouts/admin.twig" %}
+
+{% block content %}
+
+<h2>Панель администратора</h2>
+
+{% if orderMsg != null %}
+{{ orderMsg }}
+{% endif %}
+
+{% if orders != null %}
+
+<table>
+    <tr>
+        <th>Номер заказа</th>
+        <th>Номер телефона</th>
+        <th>Имя покупателя</th>
+        <th>Статус</th>
+    </tr>
+
+{% for order in orders %}
+
+    <tr>
+        <td><a href="/admin/order/{{ order.id }}/show">{{ order.id }}</a></td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.name }}</td>
+        <td>
+            <select>
+
+                {% for status in statuses %}
+
+                <option data-status-id="{{ status.id }}" 
+                        data-order-id="{{ order.id }}" 
+                        {{ status.id != order.statusId ? '' : 'selected' }}>
+
+                    {{ status.name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select> 
+        </td>
+    </tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<p>Заказов нет.</p>
+
+{% endif %}
+
+<script src="/assets/scripts/changeStatus.js"></script>
+
+{% endblock %}
