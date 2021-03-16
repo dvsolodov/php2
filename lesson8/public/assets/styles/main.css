@@ -1,0 +1,19 @@
+.active {
+    text-decoration: none;
+    color: red;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table span {
+    display: block;
+}
+
+th, td {
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
